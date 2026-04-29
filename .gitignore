@@ -1,0 +1,64 @@
+# =========================
+# Terraform
+# =========================
+
+# Terraform working dir
+**/.terraform/*
+.terraform/
+
+# Terraform state files (절대 커밋 금지)
+*.tfstate
+*.tfstate.*
+
+# Crash log
+crash.log
+
+# Sensitive variables
+*.tfvars
+*.tfvars.json
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Lock file (팀이면 유지 가능, 개인이면 ignore)
+.terraform.lock.hcl
+
+# =========================
+# Provider binary (이미 너 폴더에 있음)
+# =========================
+terraform-provider-*
+
+# =========================
+# Ansible
+# =========================
+
+# inventory (환경 따라 민감할 수 있음)
+inventory.yml
+
+# ansible 설정 (필요하면 주석 처리)
+ansible.cfg
+
+# =========================
+# SSH Key (중요 🔥)
+# =========================
+*.pem
+*.key
+*.pub
+
+# =========================
+# Generated files
+# =========================
+generated_files/
+*.log
+*.tmp
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
