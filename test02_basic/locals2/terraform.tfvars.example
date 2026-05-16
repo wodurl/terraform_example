@@ -1,0 +1,7 @@
+# locals2/terraform.tfvars.example
+
+# 개발 환경을 넣어주세요 (dev|prod)
+dev = "개발 환경"
+
+# DB 비밀번호를 작성해주세요(option)
+db_password = "비밀번호"
