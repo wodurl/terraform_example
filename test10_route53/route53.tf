@@ -1,5 +1,9 @@
 # terraform_example/test10_route53/route53.tf
 
+# 아래의 코드는 route53의 호스팅 영역에 domain name을 등록하고
+# 설정만 잘 해 놓았다면 바꿀 게 없다 (그대로 사용하면 된다)
+# 단지 ${var.domain_name}이 잘 참조될 수 있도록 domain name만 변수로 지정해 놓으면 됨.
+
 # 1. Route 53의 호스팅 영역에 등록된 도메인 정보 조회
 data "aws_route53_zone" "selected" {
     name = "${var.domain_name}." # 뒤에 반드시 .을 붙여줘야 한다.
