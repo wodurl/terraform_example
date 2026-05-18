@@ -66,3 +66,4 @@
       debug:
         msg: "데이터 복구 작업이 완료 되었습니다"
       when: restore_result is succeeded
+     
