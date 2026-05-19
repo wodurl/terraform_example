@@ -1,8 +1,6 @@
 # terraform_example/test02_s3bucket
 
-
 # aws 에 s3 bucket 을 만들어서 테스트 해보자
-
 
 # version 명시하기
 terraform {
@@ -14,9 +12,6 @@ terraform {
     }
   }
 }
-
-
-
 
 # 1. provider 설정
 provider "aws" {
@@ -30,7 +25,6 @@ resource "random_id" "bucket_suffix" {
     byte_length = 4
 }
 
-
 # s3 버킷 정의하기
 resource "aws_s3_bucket" "db_backup_bucket" {
     # s3 버킷의 이름은 전세계에서 유일해야 한다
@@ -38,7 +32,6 @@ resource "aws_s3_bucket" "db_backup_bucket" {
     # 4 byte 크기의 random 한 16진수를 뒤에 붙여서 겹치지 않는 이름이 나오게 한다.
     bucket = "db-backup-storage-${random_id.bucket_suffix.hex}"
 }
-
 
 # 1단계: IAM role 정의하기 (신분증 만들기)
 resource "aws_iam_role" "db_backup_role" {
@@ -55,7 +48,6 @@ resource "aws_iam_role" "db_backup_role" {
     })    
 }
 
-
 # 2단계: 신분증에 권한 적기
 resource "aws_iam_role_policy_attachment" "s3_full_access" {
     role = aws_iam_role.db_backup_role.name
@@ -63,13 +55,11 @@ resource "aws_iam_role_policy_attachment" "s3_full_access" {
     policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
-
 # 3단계: 신분증을 aws 가 인식할수 있도록  case 에 담기
 resource "aws_iam_instance_profile" "db_backup_profile" {
     name = "EC2-S3-Instance-Profile"
     role = aws_iam_role.db_backup_role.name
 }
-
 
 # ec2 를 만들어서 ec2_profile 를 장착(연결) 하기
 # ec2 에 설치할 amazon linux 최신 이미지 검색
@@ -81,8 +71,6 @@ data "aws_ami" "latest_al2023" {
         values = ["al2023-ami-*-x86_64"]
     }
 }
-
-
 
 # 생성된 s3 의 버킷 이름 출력
 output "s3_bucket_name" {

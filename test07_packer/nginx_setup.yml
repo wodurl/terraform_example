@@ -1,3 +1,5 @@
+# terraform_example/test07_packer/nginx_setup.yml
+
 - name: Hello world deploy
   hosts: all
   become: yes
@@ -8,7 +10,7 @@
         state: present
     - name: Create web page
       copy:
-        content: "<h1>Hello World from Packer </h1>"
+        content: "<h1>Hello World from Packer 22222</h1>"
         dest: /usr/share/nginx/html/index.html
     - name: start nginx
       ansible.builtin.service:
